@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Body, Get, Post, Param, HttpException, HttpStatus, ParseIntPipe } from '@nestjs/common';
 import { BlogPostsService } from './blogposts.service';
 import { BlogPostDto } from './dto/blogpost.dto'
 import { BlogPost } from './entities/blogpost'
@@ -14,7 +14,7 @@ export class BlogPostsController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: number): BlogPostDto {
+    findOne(@Param('id', ParseIntPipe) id: number): BlogPostDto {
         const post = this._postsService.findOne(id);
 
         if (!post) throw new HttpException('Post not found.', HttpStatus.NOT_FOUND);
@@ -23,7 +23,7 @@ export class BlogPostsController {
     }
 
     @Post()
-    create(postDto: BlogPostDto): BlogPostDto {
+    create(@Body() postDto: BlogPostDto): BlogPostDto {
         const newPost = this._postsService.create(postDto);
 
         return this.createPostDto(newPost);
