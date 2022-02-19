@@ -38,6 +38,8 @@ A bejelentkezésig nem érhetőek el a szerepkörökhöz kötött funkciók, eze
 
 ### Felhasználói esetdiagram
 
+<img src="https://github.com/dorinagy/blog/blob/main/public/pics/use-case.png?" width="600" />
+
 ### Felület terv
 
 ### Adatbázis terv
