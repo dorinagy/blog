@@ -42,6 +42,15 @@ A bejelentkezésig nem érhetőek el a szerepkörökhöz kötött funkciók, eze
 
 ### Felület terv
 
+Kezdőlap:  
+<img src="https://github.com/dorinagy/blog/blob/main/public/pics/home.png?" width="600" />
+
+Blogpost:  
+<img src="https://github.com/dorinagy/blog/blob/main/public/pics/blogpost.png?" width="600" />
+
+Regisztráció:  
+<img src="https://github.com/dorinagy/blog/blob/main/public/pics/register.png?" width="600" />
+
 ### Adatbázis terv
 
 <img src="https://github.com/dorinagy/blog/blob/main/public/pics/database.png?" width="600" />
