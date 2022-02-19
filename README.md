@@ -42,6 +42,8 @@ A bejelentkezésig nem érhetőek el a szerepkörökhöz kötött funkciók, eze
 
 ### Adatbázis terv
 
+<img src="https://github.com/dorinagy/blog/blob/main/public/pics/database.png?" width="600" />
+
 ### Architektúra
 
 ## Fejlesztői dokumentáció
