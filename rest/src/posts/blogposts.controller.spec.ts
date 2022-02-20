@@ -3,20 +3,35 @@ import { BlogPostsService } from './blogposts.service';
 import { BlogPostsController } from './blogposts.controller';
 
 describe('BlogPostsController', () => {
-  let service: BlogPostsService;
   let controller: BlogPostsController;
+  let blogPostsService: any;
 
   beforeEach(async () => {
+    blogPostsService = {
+      create: jest.fn(),
+      findAll: jest.fn(),
+      findOne: jest.fn(),
+    };
+
     const module: TestingModule = await Test.createTestingModule({
-      providers: [BlogPostsService],
       controllers: [BlogPostsController],
+      providers: [{ provide: BlogPostsService, useValue: blogPostsService }],
     }).compile();
 
-    service = module.get<BlogPostsService>(BlogPostsService);
     controller = module.get<BlogPostsController>(BlogPostsController);
   });
 
   it('should be defined', () => {
-    //expect(controller).toBeDefined();
+    expect(controller).toBeDefined();
+  });
+
+  it('should give empty array when no BlogPosts have been created', () => {
+    blogPostsService.findAll.mockReturnValue([]);
+    expect(controller.findAll({})).resolves.toEqual([]);
+  });
+
+  it('should throw an error when the requested issue is missing', () => {
+    blogPostsService.findOne.mockReturnValue(undefined);
+    expect(controller.findOne(1)).rejects.toThrow();
   });
 });

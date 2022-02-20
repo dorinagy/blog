@@ -1,3 +1,5 @@
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { EntityRepository } from '@mikro-orm/sqlite';
 import { Injectable } from '@nestjs/common';
 import { BlogPostDto } from './dto/blogpost.dto';
 import { BlogPost } from './entities/blogpost'
@@ -5,24 +7,24 @@ import { BlogPost } from './entities/blogpost'
 @Injectable()
 export class BlogPostsService {
 
-    private _posts: BlogPost[];
-    private _nextId = 1;
+    constructor(
+        @InjectRepository(BlogPost)
+        private blogPostRepository: EntityRepository<BlogPost>
+    ) {}
 
-    findAll(): BlogPost[] {
-        return this._posts;
+    findAll(blogPostDto?: BlogPostDto): Promise<BlogPost[]> {
+        return this.blogPostRepository.find(blogPostDto);
     }
 
-    findOne(id: number): BlogPost {
-        return this._posts.find((post) => post.id === id);
+    findOne(id: number): Promise<BlogPost> {
+        return this.blogPostRepository.findOne({ id });
     }
 
-    create(postDto: BlogPostDto): BlogPost {
+    async create(postDto: BlogPostDto): Promise<BlogPost> {
         const post = new BlogPost();
-        post.id = this._nextId;
-        this._nextId += 1;
         post.title = postDto.title;
 
-        this._posts.push(post);
+        await this.blogPostRepository.persistAndFlush(post);
 
         return post;
     }

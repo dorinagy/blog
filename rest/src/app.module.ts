@@ -1,7 +1,7 @@
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
 import mikroOrmConfig from '../mikro-orm.config';
-import { LabelsModule } from './labels/labels.module';
+import { CategoriesModule } from './categories/categories.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { APP_GUARD } from '@nestjs/core';
@@ -12,10 +12,10 @@ import { BlogPostsModule } from './posts/blogposts.module';
 @Module({
   imports: [
     MikroOrmModule.forRoot(mikroOrmConfig),
-    LabelsModule,
-    AuthModule,
-    UsersModule,
     BlogPostsModule,
+    //CategoriesModule,
+    //AuthModule,
+    //UsersModule,
   ],
   providers: [
     {

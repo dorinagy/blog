@@ -1,4 +1,4 @@
-import { Controller, Body, Get, Post, Param, HttpException, HttpStatus, ParseIntPipe } from '@nestjs/common';
+import { Controller, Body, Get, Post, Param, HttpException, HttpStatus, ParseIntPipe, Query } from '@nestjs/common';
 import { BlogPostsService } from './blogposts.service';
 import { BlogPostDto } from './dto/blogpost.dto'
 import { BlogPost } from './entities/blogpost'
@@ -9,13 +9,13 @@ export class BlogPostsController {
     constructor(private _postsService: BlogPostsService) {}
 
     @Get()
-    findAll(): BlogPostDto[] {
+    findAll(@Query() blogPostDto: BlogPostDto): Promise<BlogPostDto[]> {
         return this._postsService.findAll();
     }
 
     @Get(':id')
-    findOne(@Param('id', ParseIntPipe) id: number): BlogPostDto {
-        const post = this._postsService.findOne(id);
+    async findOne(@Param('id', ParseIntPipe) id: number): Promise<BlogPostDto> {
+        const post = await this._postsService.findOne(id);
 
         if (!post) throw new HttpException('Post not found.', HttpStatus.NOT_FOUND);
 
@@ -23,8 +23,8 @@ export class BlogPostsController {
     }
 
     @Post()
-    create(@Body() postDto: BlogPostDto): BlogPostDto {
-        const newPost = this._postsService.create(postDto);
+    async create(@Body() postDto: BlogPostDto): Promise<BlogPostDto> {
+        const newPost = await this._postsService.create(postDto);
 
         return this.createPostDto(newPost);
     }
