@@ -20,7 +20,7 @@ export class UsersController {
   constructor(
     private userService: UsersService,
     private authService: AuthService,
-  ) {}
+  ) { }
 
   @AllowAnonymous()
   @Post()

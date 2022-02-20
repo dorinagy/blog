@@ -1,4 +1,5 @@
-import { Collection, Entity, ManyToMany, OneToMany, PrimaryKey, Property } from '@mikro-orm/core'
+import { Collection, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryKey, Property } from '@mikro-orm/core'
+import { User } from '../../users/entities/user';
 import { Category } from '../../categories/entities/category';
 import { Comment } from './comment';
 
@@ -24,4 +25,7 @@ export class BlogPost {
 
     @ManyToMany(() => Category, (category) => category.blogPosts)
     categories = new Collection<Category>(this);
+
+    @ManyToOne(() => User)
+    user!: User;
 }

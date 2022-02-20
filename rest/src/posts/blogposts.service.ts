@@ -20,14 +20,14 @@ export class BlogPostsService {
     findAll(blogPostDto?: BlogPostDto): Promise<BlogPost[]> {
         return this.blogPostRepository.find(
             { title: { $like: `%${blogPostDto.title || ''}%` } },
-            { populate: ['categories'] }
+            { populate: ['categories', 'user'] }
         );
     }
 
     findOne(id: number): Promise<BlogPost> {
         return this.blogPostRepository.findOne(
             { id },
-            { populate: ['categories', 'comments'] }
+            { populate: ['categories', 'comments', 'user'] }
         );
     }
 
@@ -43,7 +43,7 @@ export class BlogPostsService {
           );
 
         await this.blogPostRepository.persistAndFlush(post);
-        await post.categories.init();
+        await this.blogPostRepository.populate(post, ['categories', 'user']);
 
         return post;
     }
@@ -62,7 +62,7 @@ export class BlogPostsService {
         }
     
         await this.blogPostRepository.persistAndFlush(post);
-        await post.categories.init();
+        await this.blogPostRepository.populate(post, ['categories', 'user']);
     
         return post;
       }

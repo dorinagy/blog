@@ -11,11 +11,11 @@ export class UsersService {
     @InjectRepository(User)
     private userRepository: EntityRepository<User>,
     private authService: AuthService,
-  ) {}
+  ) { }
 
   async create(userAuthDto: UserAuthDto): Promise<User> {
     const user = new User();
-    user.name = userAuthDto.name;
+    user.email = userAuthDto.email;
     user.userName = userAuthDto.userName;
     user.password = await this.authService.hashPassword(userAuthDto.password);
     user.role = UserRole.User;

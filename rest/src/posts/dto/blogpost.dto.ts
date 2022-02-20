@@ -1,3 +1,5 @@
+import { UserDto } from "../../users/dto/user.dto";
+import { User } from "../../users/entities/user";
 import { CategoryDto } from "../../categories/dto/category.dto";
 import { BlogPost } from "../entities/blogpost";
 import { CommentDto } from "./comment.dto";
@@ -11,6 +13,7 @@ export class BlogPostDto {
     updatedAt?: Date;
     comments?: CommentDto[];
     categories?: CategoryDto[];
+    user?: UserDto;
 
     constructor(post: BlogPost) {
         this.id = post.id;
@@ -29,6 +32,10 @@ export class BlogPostDto {
             this.categories = post.categories.getItems()
                 .map((label) => new CategoryDto(label));
         }
+
+        if (post.user && post.user instanceof User) {
+            this.user = new UserDto(post.user);
+          }
     }
 }
   

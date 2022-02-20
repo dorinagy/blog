@@ -14,8 +14,8 @@ import { BlogPostsModule } from './posts/blogposts.module';
     MikroOrmModule.forRoot(mikroOrmConfig),
     BlogPostsModule,
     CategoriesModule,
-    //AuthModule,
-    //UsersModule,
+    AuthModule,
+    UsersModule,
   ],
   providers: [
     {
@@ -28,4 +28,4 @@ import { BlogPostsModule } from './posts/blogposts.module';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }
