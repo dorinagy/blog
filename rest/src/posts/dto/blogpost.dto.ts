@@ -21,12 +21,13 @@ export class BlogPostDto {
 
         if (post.comments.isInitialized(true)) {
             this.comments = post.comments
-            .getItems()
-            .map((comment) => new CommentDto(comment));
+                .getItems()
+                .map((comment) => new CommentDto(comment));
         }
 
         if (post.categories.isInitialized(true)) {
-            this.categories = post.categories.getItems().map((label) => new CategoryDto(label));
+            this.categories = post.categories.getItems()
+                .map((label) => new CategoryDto(label));
         }
     }
 }
