@@ -1,6 +1,6 @@
 import { getRepositoryToken } from '@mikro-orm/nestjs';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Category } from 'src/categories/entities/category';
+import { Category } from '../categories/entities/category';
 import { BlogPostsService } from './blogposts.service';
 import { BlogPost } from './entities/blogpost';
 

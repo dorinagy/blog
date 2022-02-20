@@ -1,4 +1,4 @@
-import { CategoryDto } from "src/categories/dto/category.dto";
+import { CategoryDto } from "../../categories/dto/category.dto";
 import { BlogPost } from "../entities/blogpost";
 import { CommentDto } from "./comment.dto";
 
