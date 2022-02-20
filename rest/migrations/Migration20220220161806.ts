@@ -1,9 +1,9 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20220220142534 extends Migration {
+export class Migration20220220161806 extends Migration {
 
   async up(): Promise<void> {
-    this.addSql('create table `user` (`id` integer not null primary key autoincrement, `name` varchar not null, `user_name` varchar not null, `password` varchar not null, `role` varchar not null);');
+    this.addSql('create table `user` (`id` integer not null primary key autoincrement, `email` varchar not null, `user_name` varchar not null, `password` varchar not null, `role` varchar not null);');
     this.addSql('create unique index `user_user_name_unique` on `user` (`user_name`);');
 
     this.addSql('create table `category` (`id` integer not null primary key autoincrement, `name` varchar not null);');
@@ -16,6 +16,9 @@ export class Migration20220220142534 extends Migration {
     this.addSql('create table `category_blog_posts` (`category_id` integer not null, `blog_post_id` integer not null, primary key (`category_id`, `blog_post_id`));');
     this.addSql('create index `category_blog_posts_category_id_index` on `category_blog_posts` (`category_id`);');
     this.addSql('create index `category_blog_posts_blog_post_id_index` on `category_blog_posts` (`blog_post_id`);');
+
+    this.addSql('alter table `blog_post` add column `user_id` integer null;');
+    this.addSql('create index `blog_post_user_id_index` on `blog_post` (`user_id`);');
 
     this.addSql('alter table `comment` add column `blog_post_id` integer null;');
     this.addSql('alter table `comment` add column `user_id` integer null;');
