@@ -1,5 +1,6 @@
 npx nest g resource role
 
+//migration:
 npx mikro-orm migration:create --initial
 npx mikro-orm schema:create -r
 npx mikro-orm migration:create
