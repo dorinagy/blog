@@ -20,7 +20,7 @@ export class CategoriesService {
 
   async findAll(categoryDto: CategoryDto) {
     return await this.categoryRepository.find({
-      text: { $like: `%${categoryDto.text || ''}%` },
+      name: { $like: `%${categoryDto.name || ''}%` },
     });
   }
 }

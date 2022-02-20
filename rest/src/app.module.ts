@@ -13,7 +13,7 @@ import { BlogPostsModule } from './posts/blogposts.module';
   imports: [
     MikroOrmModule.forRoot(mikroOrmConfig),
     BlogPostsModule,
-    //CategoriesModule,
+    CategoriesModule,
     //AuthModule,
     //UsersModule,
   ],

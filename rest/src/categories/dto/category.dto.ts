@@ -2,10 +2,10 @@ import { Category } from '../entities/category';
 
 export class CategoryDto {
   id?: number;
-  text?: string;
+  name?: string;
 
   constructor(category: Category) {
-    this.text = category.text;
+    this.name = category.name;
     this.id = category.id;
   }
 }

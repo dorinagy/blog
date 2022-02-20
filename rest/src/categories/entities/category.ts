@@ -5,6 +5,7 @@ import {
   PrimaryKey,
   Property,
 } from '@mikro-orm/core';
+import { BlogPost } from '../../posts/entities/blogpost';
 
 @Entity()
 export class Category {
@@ -12,5 +13,8 @@ export class Category {
   id!: number;
 
   @Property({ unique: true })
-  text!: string;
+  name!: string;
+
+  @ManyToMany(() => BlogPost)
+  blogPosts = new Collection<BlogPost>(this);
 }
