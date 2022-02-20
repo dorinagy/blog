@@ -1,0 +1,9 @@
+npx mikro-orm migration:create --initial
+
+npx mikro-orm migration:up
+
+npx ts-node ./migrations/migrate.ts
+node ./dist/migrations/migrate.js
+
+npx mikro-orm schema:create -r
+
