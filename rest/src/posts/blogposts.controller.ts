@@ -10,7 +10,7 @@ import {
     Query, 
     Patch
 } from '@nestjs/common';
-import { AllowAnonymous } from 'src/auth/allow-anonymous';
+import { AllowAnonymous } from '../auth/allow-anonymous';
 import { Roles } from '../auth/roles';
 import { UserRole } from '../users/entities/user';
 import { BlogPostsService } from './blogposts.service';
