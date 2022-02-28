@@ -10,6 +10,9 @@ import {
     Query, 
     Patch
 } from '@nestjs/common';
+import { AllowAnonymous } from 'src/auth/allow-anonymous';
+import { Roles } from '../auth/roles';
+import { UserRole } from '../users/entities/user';
 import { BlogPostsService } from './blogposts.service';
 import { BlogPostDto } from './dto/blogpost.dto'
 import { CommentDto } from './dto/comment.dto';
@@ -19,14 +22,20 @@ export class BlogPostsController {
 
     constructor(private _postsService: BlogPostsService) {}
 
+    @AllowAnonymous()
     @Get()
-    async findAll(@Query() blogPostDto: BlogPostDto): Promise<BlogPostDto[]> {
+    async findAll(
+        @Query() blogPostDto: BlogPostDto
+    ): Promise<BlogPostDto[]> {
         const posts = await this._postsService.findAll(blogPostDto);
         return posts.map((post) => new BlogPostDto(post));
     }
 
+    @AllowAnonymous()
     @Get(':id')
-    async findOne(@Param('id', ParseIntPipe) id: number): Promise<BlogPostDto> {
+    async findOne(
+        @Param('id', ParseIntPipe) id: number
+    ): Promise<BlogPostDto> {
         const post = await this._postsService.findOne(id);
 
         if (!post) throw new HttpException('Post not found.', HttpStatus.NOT_FOUND);
@@ -35,12 +44,16 @@ export class BlogPostsController {
     }
 
     @Post()
-    async create(@Body() postDto: BlogPostDto): Promise<BlogPostDto> {
+    @Roles(UserRole.Admin)
+    async create(
+        @Body() postDto: BlogPostDto
+    ): Promise<BlogPostDto> {
         const newPost = await this._postsService.create(postDto);
         return new BlogPostDto(newPost);
     }
 
     @Patch(':id')
+    @Roles(UserRole.Admin)
     async update(
         @Param('id', ParseIntPipe) id: number,
         @Body() postDto: BlogPostDto,

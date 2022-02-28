@@ -10,12 +10,15 @@ import {
 } from '@nestjs/common';
 import { CategoryDto } from './dto/category.dto';
 import { CategoriesService } from './categories.service';
+import { Roles } from '../auth/roles';
+import { UserRole } from '../users/entities/user';
 
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Post()
+  @Roles(UserRole.Admin)
   async create(@Body() createCategoryDto: CategoryDto) {
     try {
       const newCategory = await this.categoriesService.create(createCategoryDto);
