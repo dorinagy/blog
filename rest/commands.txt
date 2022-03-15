@@ -10,3 +10,16 @@ npm run migrate:dev
 
 npx ts-node ./migrations/migrate.ts
 node ./dist/migrations/migrate.js
+
+# Login to Heroku
+heroku login
+
+# One time setup: create a git remote to heroku
+heroku git:remote -a bead-blog
+
+# Deploying your selected application from a subfolder
+# The current folder must be the main directory
+git subtree push --prefix server-java-issuetracker-restapi heroku main
+
+# You can trace problems by viewing the logs
+heroku logs --tail -a <APPNAME>
