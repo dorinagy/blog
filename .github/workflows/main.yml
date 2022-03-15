@@ -15,3 +15,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "bead-blog" #Must be unique in Heroku
           heroku_email: "dorinagy06@gmail.com"
+          appdir: "rest"
