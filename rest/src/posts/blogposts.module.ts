@@ -3,7 +3,7 @@ import { BlogPostsService } from './blogposts.service';
 import { BlogPostsController } from './blogposts.controller';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { BlogPost } from './entities/blogpost';
-import { Category } from 'src/categories/entities/category';
+import { Category } from '../categories/entities/category';
 
 @Module({
   imports: [MikroOrmModule.forFeature({entities: [BlogPost, Category]})],
