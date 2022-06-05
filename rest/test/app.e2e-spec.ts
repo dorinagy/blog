@@ -4,7 +4,7 @@ import supertest, * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
 describe('Blog', () => {
-  const user = { name: 'Teszt János', userName: 'janos', email: 'janos@test.hu', password: 'janos' };
+  const user = { userName: 'janos', email: 'janos@test.hu', password: 'janos' };
 
   let app: INestApplication;
   let requestHandle: supertest.SuperTest<supertest.Test>;
@@ -52,7 +52,7 @@ describe('Blog', () => {
         modifiedAt: null,
         user: {
           id: 3,
-          name: 'Admin Admin',
+          userName: 'Admin Admin',
           role: 'ADMIN',
         },
         labels: [],
