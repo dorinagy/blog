@@ -1,31 +1,8 @@
-name: Deploy
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "bead-blog" #Must be unique in Heroku
-          heroku_email: "dorinagy06@gmail.com"
-          appdir: "rest"
-
-
 name: CI
-
 on:
   push:
     branches: [main]
-
   workflow_dispatch:
-
 jobs:
   backend:
     runs-on: ubuntu-latest
