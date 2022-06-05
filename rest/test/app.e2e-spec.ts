@@ -39,7 +39,7 @@ describe('Blog', () => {
     });
   });
 
-  describe('BlogPost Controller', () => {
+  /*describe('BlogPost Controller', () => {
     let token: string;
 
     let createdPost: Record<string, unknown>;
@@ -233,5 +233,5 @@ describe('Blog', () => {
           });
       });
     });
-  });
+  });*/
 });
