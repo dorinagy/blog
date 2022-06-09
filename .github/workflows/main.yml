@@ -22,6 +22,22 @@ jobs:
         run: npm test
       - name: Run e2e tests
         run: npm run test:e2e
+  backend-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: rest
+    concurrency: heroku-deploy
+    needs: backend
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and deploy on Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "bead-blog" #Must be unique in Heroku
+          heroku_email: "dorinagy06@gmail.com"
+          appdir: "rest"
   frontend:
     runs-on: ubuntu-latest
     defaults:
@@ -38,3 +54,19 @@ jobs:
         run: npm i
       - name: Run tests
         run: npm run test:ci
+  frontend-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ui
+    concurrency: heroku-deploy
+    needs: frontend
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and deploy on Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "bead-blog" #Must be unique in Heroku
+          heroku_email: "dorinagy06@gmail.com"
+          appdir: "rest"

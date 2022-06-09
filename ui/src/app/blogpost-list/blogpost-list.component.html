@@ -1,0 +1,20 @@
+<h1>BlogPost list</h1>
+
+<mat-accordion *ngIf="blogposts">
+  <mat-expansion-panel *ngFor="let blogpost of blogposts" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span>{{ blogpost.title }}</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-blogpost-summary
+      [blogpost]="blogpost"
+      [showButtons]="true"
+      (editBlogPost)="onEditBlogPost(blogpost)"
+    ></app-blogpost-summary>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div class="button-container">
+  <button mat-raised-button (click)="onCreateBlogPost()">Create blogpost</button>
+</div>
