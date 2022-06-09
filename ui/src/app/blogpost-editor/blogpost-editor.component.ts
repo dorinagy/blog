@@ -7,49 +7,49 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Issue } from '../core/issue';
+import { BlogPost } from '../core/blogpost';
 
 @Component({
-  selector: 'app-issue-editor',
-  templateUrl: './issue-editor.component.html',
-  styleUrls: ['./issue-editor.component.scss'],
+  selector: 'app-blogpost-editor',
+  templateUrl: './blogpost-editor.component.html',
+  styleUrls: ['./blogpost-editor.component.scss'],
 })
-export class IssueEditorComponent implements OnInit {
-  issueForm: FormGroup = this.fb.group({
+export class BlogPostEditorComponent implements OnInit {
+  blogpostForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
     place: ['', Validators.required],
     description: ['', Validators.required],
   });
 
   get title(): FormControl {
-    return this.issueForm.get('title') as FormControl;
+    return this.blogpostForm.get('title') as FormControl;
   }
 
   get place(): FormControl {
-    return this.issueForm.get('place') as FormControl;
+    return this.blogpostForm.get('place') as FormControl;
   }
 
   get description(): FormControl {
-    return this.issueForm.get('description') as FormControl;
+    return this.blogpostForm.get('description') as FormControl;
   }
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<IssueEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) private issue: Issue
+    private dialogRef: MatDialogRef<BlogPostEditorComponent>,
+    @Inject(MAT_DIALOG_DATA) private blogpost: BlogPost
   ) {
-    if (this.issue) {
-      this.issueForm.reset(this.issue);
+    if (this.blogpost) {
+      this.blogpostForm.reset(this.blogpost);
     }
   }
 
   ngOnInit(): void {}
 
   submit() {
-    if (!this.issueForm.valid) {
+    if (!this.blogpostForm.valid) {
       return;
     }
 
-    this.dialogRef.close(this.issueForm.value as Issue);
+    this.dialogRef.close(this.blogpostForm.value as BlogPost);
   }
 }

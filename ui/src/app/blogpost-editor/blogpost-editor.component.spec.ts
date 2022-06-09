@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IssueEditorComponent } from './issue-editor.component';
+import { BlogPostEditorComponent } from './blogpost-editor.component';
 
-xdescribe('IssueEditorComponent', () => {
-  let component: IssueEditorComponent;
-  let fixture: ComponentFixture<IssueEditorComponent>;
+xdescribe('BlogPostEditorComponent', () => {
+  let component: BlogPostEditorComponent;
+  let fixture: ComponentFixture<BlogPostEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ IssueEditorComponent ]
+      declarations: [ BlogPostEditorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IssueEditorComponent);
+    fixture = TestBed.createComponent(BlogPostEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
