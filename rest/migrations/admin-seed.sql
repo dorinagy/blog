@@ -1,1 +1,1 @@
-insert into user (user_name, email, password, role) values ('admin', 'admin@admin.hu', '271778ce62523a6bc67b202bf3b357d0033320a79d0fba2ae8a99c99cc8b9816084203153675d38ff19d35e5254310e41fc08c8f0c540672d19c08feba2a0978', 'ADMIN');
+insert into user (user_name, email, password, role) values ('admin', 'admin@admin.hu', '1e062de43a2ea19be31bc7f6f0a89f868b71b08d44a3652812bec5d54ff701feb68b430cb3a6932a84cb7cd25e2f6fb99ed87b2aec62ad05d8ad6281a3ccf38c', 'ADMIN');

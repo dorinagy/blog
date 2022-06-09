@@ -5,6 +5,7 @@ import { AuthGuard } from './core/auth.guard';
 import { IssueListComponent } from './issue-list/issue-list.component'; */
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
 /*   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: '**',

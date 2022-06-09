@@ -6,7 +6,7 @@ import { User } from './src/users/entities/user';
 
 export default {
   entities: [BlogPost, Category, Comment, User],
-  dbName: (process.env.seed ? './dist/' : '') + process.env.dbName,
+  dbName: (process.env.seed ? './dist/' : '') + process.env.dbName || 'blog.sqlite3',
   type: 'sqlite',
   migrations: {
     path: './migrations',

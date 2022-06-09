@@ -6,6 +6,10 @@ export interface LoginResponse {
   access_token: string;
 }
 
+export interface RegisterResponse {
+  user: User;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -34,7 +38,15 @@ export class AuthStorageService {
     const token = sessionStorage.getItem(AuthStorageService.TOKEN_KEY);
     const userJSON = sessionStorage.getItem(AuthStorageService.USER_KEY);
 
-    if (!(token && userJSON)) {
+    console.log(userJSON)
+    console.log(typeof token)
+    console.log(!token)
+
+    if (
+      token === "undefined" || 
+      userJSON === "undefined" || 
+      !(token && userJSON)
+    ) {
       return null;
     }
 

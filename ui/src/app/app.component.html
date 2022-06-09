@@ -7,6 +7,13 @@
   <button
     *ngIf="!authService.isLoggedIn"
     mat-button
+    [routerLink]="['/', 'register']"
+  >
+    <span>Register</span>
+  </button>
+  <button
+    *ngIf="!authService.isLoggedIn"
+    mat-button
     [routerLink]="['/', 'login']"
   >
     <span>Login</span>
@@ -23,7 +30,7 @@
         mat-list-item 
         [routerLink]="['/', 'posts']" 
         routerLinkActive="active"
-      >Main Page</a>
+      >Home</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

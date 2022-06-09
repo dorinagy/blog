@@ -1,11 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthStorageService, LoginResponse } from './auth-storage.service';
+import { AuthStorageService, LoginResponse, RegisterResponse } from './auth-storage.service';
 import { UserService } from './user.service';
 
 export interface UserAuthRequest {
-  name?: string;
+  userName: string;
+  password: string;
+}
+
+export interface UserRegisterRequest {
+  email: string;
   userName: string;
   password: string;
 }
@@ -44,6 +49,23 @@ export class AuthService {
     this.authStorageService.saveUser(result);
 
     this.setLoginResponse(result);
+  }
+
+  async register(userRegisterRequest: UserRegisterRequest) {
+    const result = await (
+      this.httpClient.post(
+        '/api/users',
+        userRegisterRequest
+      ) as Observable<RegisterResponse>
+    ).toPromise();
+
+    if (!result) return;
+
+    this.login({
+      userName: userRegisterRequest.userName,
+      password: userRegisterRequest.password
+    })
+
   }
 
   logout() {
