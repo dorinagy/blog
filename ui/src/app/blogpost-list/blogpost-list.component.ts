@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BlogPost } from '../core/blogpost';
 import { BlogPostService } from '../core/blogpost.service';
-//import { BlogPostEditorComponent } from '../blogpost-editor/blogpost-editor.component';
+import { BlogPostEditorComponent } from '../blogpost-editor/blogpost-editor.component';
 
 @Component({
   selector: 'app-blogpost-list',
@@ -18,7 +18,7 @@ export class BlogPostListComponent implements OnInit {
     this.blogposts = await this.blogpostService.getBlogPosts();
   }
 
-  /*async onEditBlogPost(blogpost: BlogPost) {
+  async onEditBlogPost(blogpost: BlogPost) {
     const dialogRef = this.dialog.open(BlogPostEditorComponent, {
       width: '500px',
       data: blogpost,
@@ -39,5 +39,5 @@ export class BlogPostListComponent implements OnInit {
     const createdBlogPost = await this.blogpostService.createBlogPost(result);
 
     this.blogposts!.push(createdBlogPost);
-  }*/
+  }
 }

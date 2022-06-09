@@ -1,0 +1,34 @@
+<ng-container *ngIf="blogpost; else blogpostMissing">
+  <h1>{{ blogpost.title }} - {{ blogpost.user!.userName }}</h1>
+  <div>
+    <p>Text: {{ blogpost.text }}</p>
+  </div>
+  <div>
+    <h2>Comments</h2>
+    <ng-container *ngIf="blogpost.comments && blogpost.comments.length !== 0">
+      <div class="comment" *ngFor="let comment of blogpost.comments">
+        <div class="comment-author">{{ comment.user!.userName }}</div>
+        <p>{{ comment.text }}</p>
+      </div>
+    </ng-container>
+    <p *ngIf="!blogpost.comments || blogpost.comments.length === 0">
+      No comments yet.
+    </p>
+    <form (submit)="addComment()">
+      <mat-form-field appearance="fill">
+        <mat-label>Comment</mat-label>
+        <textarea
+          required
+          matInput
+          name="comment"
+          [formControl]="comment"
+        ></textarea>
+        <mat-error *ngIf="comment.invalid">This field is required.</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Send comment</button>
+    </form>
+  </div>
+</ng-container>
+<ng-template #blogpostMissing>
+  <h1>Blog post does not exist.</h1>
+</ng-template>

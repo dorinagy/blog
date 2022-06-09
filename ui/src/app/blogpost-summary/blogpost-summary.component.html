@@ -1,0 +1,24 @@
+<div>
+  <p id="title">Title: {{ blogpost.title }}</p>
+</div>
+<div>
+  <p>Text: {{ blogpost.text }}</p>
+</div>
+<div>
+  <p>Creator: {{ blogpost.user?.userName }}</p>
+</div>
+<div>
+  <p>Created At: {{ blogpost.createdAt }}</p>
+</div>
+<div *ngIf="showButtons" class="buttons">
+  <a
+    [routerLink]="['/', 'blogposts', blogpost.id]"
+    mat-raised-button
+    color="primary"
+  >
+    Show details
+  </a>
+  <button *ngIf="userService.isAdmin" id="edit-blogpost" (click)="edit()" mat-raised-button color="secondary">
+    Edit blogpost
+  </button>
+</div>

@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/auth.guard';
-/* import { IssueDetailsComponent } from './issue-details/issue-details.component';
-import { IssueListComponent } from './issue-list/issue-list.component'; */
+ import { BlogPostDetailsComponent } from './blogpost-details/blogpost-details.component';
+import { BlogPostListComponent } from './blogpost-list/blogpost-list.component';
 import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-/*   {
-    path: 'issues',
-    component: IssueListComponent,
+   {
+    path: 'blogposts',
+    component: BlogPostListComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'issues/:issueId',
-    component: IssueDetailsComponent,
+    path: 'blogposts/:id',
+    component: BlogPostDetailsComponent,
     canActivate: [AuthGuard],
-  }, */
+  },
   {
     path: 'landing',
     component: LandingComponent,

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Edit blogpost</h1>
+<h1 mat-dialog-title>Create blogpost</h1>
 
 <form mat-dialog-content [formGroup]="blogpostForm" (ngSubmit)="submit()">
   <mat-form-field appearance="outline">
@@ -7,31 +7,21 @@
       formControlName="title"
       name="title"
       matInput
-      placeholder="Bad mouse"
+      placeholder="Title"
     />
     <mat-error *ngIf="title.invalid">
       <span *ngIf="title.hasError('required')"> This field is required. </span>
     </mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <mat-label>Place</mat-label>
-    <input
-      formControlName="place"
-      name="place"
-      matInput
-      placeholder="2-201"
-    />
-    <mat-error *ngIf="place.invalid">This field is required.</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Description</mat-label>
+    <mat-label>Text</mat-label>
     <textarea
-      formControlName="description"
-      name="description"
+      formControlName="text"
+      name="text"
       matInput
-      placeholder="Bad mouse"
+      placeholder="Type here..."
     ></textarea>
-    <mat-error *ngIf="description.invalid">This field is required.</mat-error>
+    <mat-error *ngIf="text.invalid">This field is required.</mat-error>
   </mat-form-field>
   <div class="mat-dialog-actions">
     <button mat-raised-button color="primary">Save</button>

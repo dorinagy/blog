@@ -17,20 +17,15 @@ import { BlogPost } from '../core/blogpost';
 export class BlogPostEditorComponent implements OnInit {
   blogpostForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
-    place: ['', Validators.required],
-    description: ['', Validators.required],
+    text: ['', Validators.required],
   });
 
   get title(): FormControl {
     return this.blogpostForm.get('title') as FormControl;
   }
 
-  get place(): FormControl {
-    return this.blogpostForm.get('place') as FormControl;
-  }
-
-  get description(): FormControl {
-    return this.blogpostForm.get('description') as FormControl;
+  get text(): FormControl {
+    return this.blogpostForm.get('text') as FormControl;
   }
 
   constructor(
