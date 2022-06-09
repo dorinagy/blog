@@ -35,9 +35,10 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "bead-blog" #Must be unique in Heroku
+          heroku_app_name: "bead-blog-rest" #Must be unique in Heroku
           heroku_email: "dorinagy06@gmail.com"
           appdir: "rest"
+          branch: "main"
   frontend:
     runs-on: ubuntu-latest
     defaults:
@@ -67,6 +68,7 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "bead-blog" #Must be unique in Heroku
+          heroku_app_name: "bead-blog-ui" #Must be unique in Heroku
           heroku_email: "dorinagy06@gmail.com"
-          appdir: "rest"
+          appdir: "ui"
+          branch: "main"
