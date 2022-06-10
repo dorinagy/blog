@@ -60,64 +60,64 @@ Regisztráció:
 #### Végpontok
 
 
-GET /blogposts - összes blogpost lekérdezés
-  params:
-  returns:
-    200: BlogPost[] - A felhasználó által elérhető postok
-
-GET /blogposts/:blogpostId - egy konkrét blogpost lekérdezése
-  params:
-    blogpostId: number - Ezt a konkrét blogpostot akarom lekérdezni
-  return:
-    200: BlogPost - A kért blogpost
-    404 - Nem létezik ez a blogpost
-
-POST /blogposts - egy új blogpost létrehozása
-  params:
-    Blogpost - A létrehozandó blogpost adatai
-  returns:
-    200: Blogpost - A létrehozott blogpost
-
-PATCH /blogposts/:id - blogpost módosítása a megadott adatokkal
-  params:
-    id: number - A módosítandó blogpost Id-ja
-    BlogPost - A módosítandó mezők és értékeik
-  returns:
-    200: BlogPost - A módosított blogpost
-    404 - Nem létezik a módosítandó blogpost
-    403 - Ezt az blogpost nem módosíthatja az aktuális felhasználó
-
-PUT /blogposts/:blogpostId - blogpost lecserélése
-  params:
-    id: number - A módosítandó blogpost Id-ja
-    Blogpost - A cél blogpost
-  returns:
-    200: Blogpost - A módosított blogpost
-    404 - Nem létezik a módosítandó blogpost
-    403 - Ezt az blogpost nem módosíthatja az aktuális felhasználó
-
-DELETE /blogposts/:blogpostId - blogpost törlése
-  params:
-    id: number - A törlendő blogpost Id-ja
-  returns:
-    200 - Sikerült törölni az blogpostot
-    404 - Nem létezik a törlendő blogpost
-    403 - Nincs jog az adott blogpost törléséhez
-    
-GET /blogposts/:id/comments - blogposthoz tartozó kommentek lekérdezése
-  params:
-    id: number - A lekérdezendő üzenetek blogpostja
-  returns:
-    200: Comment[] - Az blogposthoz tartozó kommentek
-    403 - A felhasználó nem férhet hozzá ehhez az blogposthoz
-
-POST /blogposts/:is/comments - blogposthoz komment létrehozása
-  params:
-    id: number - Az blogpost id-ja, amihez az kommentet létre akarom hozni
-  returns:
-    200: Comment - A létrehozott komment
-    403 - A felhasználó nem férhet hozzá ehhez az blogposthoz
-
+GET /blogposts - összes blogpost lekérdezés   
+  params:   
+  returns:   
+    200: BlogPost[] - A felhasználó által elérhető postok   
+   
+GET /blogposts/:blogpostId - egy konkrét blogpost lekérdezése   
+  params:   
+    blogpostId: number - Ezt a konkrét blogpostot akarom lekérdezni   
+  return:   
+    200: BlogPost - A kért blogpost   
+    404 - Nem létezik ez a blogpost   
+   
+POST /blogposts - egy új blogpost létrehozása   
+  params:   
+    Blogpost - A létrehozandó blogpost adatai   
+  returns:   
+    200: Blogpost - A létrehozott blogpost   
+   
+PATCH /blogposts/:id - blogpost módosítása a megadott adatokkal   
+  params:   
+    id: number - A módosítandó blogpost Id-ja   
+    BlogPost - A módosítandó mezők és értékeik   
+  returns:   
+    200: BlogPost - A módosított blogpost   
+    404 - Nem létezik a módosítandó blogpost   
+    403 - Ezt az blogpost nem módosíthatja az aktuális felhasználó   
+   
+PUT /blogposts/:blogpostId - blogpost lecserélése   
+  params:   
+    id: number - A módosítandó blogpost Id-ja   
+    Blogpost - A cél blogpost   
+  returns:   
+    200: Blogpost - A módosított blogpost   
+    404 - Nem létezik a módosítandó blogpost   
+    403 - Ezt az blogpost nem módosíthatja az aktuális felhasználó   
+   
+DELETE /blogposts/:blogpostId - blogpost törlése   
+  params:   
+    id: number - A törlendő blogpost Id-ja   
+  returns:   
+    200 - Sikerült törölni az blogpostot   
+    404 - Nem létezik a törlendő blogpost   
+    403 - Nincs jog az adott blogpost törléséhez   
+       
+GET /blogposts/:id/comments - blogposthoz tartozó kommentek lekérdezése   
+  params:   
+    id: number - A lekérdezendő üzenetek blogpostja   
+  returns:   
+    200: Comment[] - Az blogposthoz tartozó kommentek   
+    403 - A felhasználó nem férhet hozzá ehhez az blogposthoz   
+   
+POST /blogposts/:is/comments - blogposthoz komment létrehozása   
+  params:   
+    id: number - Az blogpost id-ja, amihez az kommentet létre akarom hozni   
+  returns:   
+    200: Comment - A létrehozott komment   
+    403 - A felhasználó nem férhet hozzá ehhez az blogposthoz   
+   
 ## Fejlesztői dokumentáció
 
 ### Fejlesztői környezet
