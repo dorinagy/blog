@@ -12,6 +12,8 @@ import {
 } from '@nestjs/common';
 import { AllowAnonymous } from '../auth/allow-anonymous';
 import { Roles } from '../auth/roles';
+import { UserParam } from '../auth/user-param.decorator';
+import { UserDto } from '../users/dto/user.dto';
 import { UserRole } from '../users/entities/user';
 import { BlogPostsService } from './blogposts.service';
 import { BlogPostDto } from './dto/blogpost.dto'
@@ -46,10 +48,19 @@ export class BlogPostsController {
     @Post()
     @Roles(UserRole.Admin)
     async create(
-        @Body() postDto: BlogPostDto
+        @Body() postDto: BlogPostDto,
+        @UserParam() userDto: UserDto,
     ): Promise<BlogPostDto> {
-        const newPost = await this._postsService.create(postDto);
+        const newPost = await this._postsService.create(postDto, userDto);
         return new BlogPostDto(newPost);
+    }
+
+    @Post('remove/:id')
+    @Roles(UserRole.Admin)
+    async remove(
+        @Param('id', ParseIntPipe) id: number,
+    ) {
+        await this._postsService.remove(id);
     }
 
     @Patch(':id')
@@ -66,8 +77,9 @@ export class BlogPostsController {
     async addComment(
         @Param('id', ParseIntPipe) id: number,
         @Body() commentDto: CommentDto,
+        @UserParam() userDto: UserDto,
     ): Promise<BlogPostDto> {
-        const comment = await this._postsService.addComment(id, commentDto);
+        const comment = await this._postsService.addComment(id, commentDto, userDto);
         
         if (!comment) throw new HttpException('BlogPost not found', HttpStatus.NOT_FOUND);
 

@@ -1,20 +1,27 @@
 <h1>Blog Posts</h1>
 
 <mat-accordion *ngIf="blogposts">
-  <mat-expansion-panel *ngFor="let blogpost of blogposts" hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <span>{{ blogpost.title }}</span>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-blogpost-summary
-      [blogpost]="blogpost"
-      [showButtons]="true"
-      (editBlogPost)="onEditBlogPost(blogpost)"
-    ></app-blogpost-summary>
-  </mat-expansion-panel>
+  <div class="card-container">
+
+    <mat-card class="blog-card" *ngFor="let blogpost of blogposts">
+      <mat-card-title-group>
+        <mat-card-title>{{ blogpost.title }}</mat-card-title>
+        <mat-card-subtitle>{{ blogpost.createdAt }}</mat-card-subtitle>
+        <mat-card-subtitle class="categories" *ngFor="let category of blogpost.categories">{{ category.name }}</mat-card-subtitle>
+        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+      </mat-card-title-group>
+      <mat-card-content>
+        <app-blogpost-summary
+          [blogpost]="blogpost"
+          [showButtons]="true"
+          (editBlogPost)="onEditBlogPost(blogpost)"
+        ></app-blogpost-summary>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
 </mat-accordion>
 
 <div class="button-container">
-  <button mat-raised-button (click)="onCreateBlogPost()">Create blogpost</button>
+  <button *ngIf="userService.isAdmin"  mat-raised-button (click)="onCreateBlogPost()">Create blogpost</button>
 </div>

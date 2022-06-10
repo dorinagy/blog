@@ -38,10 +38,6 @@ export class AuthStorageService {
     const token = sessionStorage.getItem(AuthStorageService.TOKEN_KEY);
     const userJSON = sessionStorage.getItem(AuthStorageService.USER_KEY);
 
-    console.log(userJSON)
-    console.log(typeof token)
-    console.log(!token)
-
     if (
       token === "undefined" || 
       userJSON === "undefined" || 

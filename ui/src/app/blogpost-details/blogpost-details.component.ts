@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BlogPost } from '../core/blogpost';
 import { BlogPostService } from '../core/blogpost.service';
+import { UserService } from '../core/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blogpost-details',
@@ -17,11 +19,13 @@ export class BlogPostDetailsComponent implements OnInit {
   constructor(
     private blogpostService: BlogPostService,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public userService: UserService,
+    private router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
-    const blogpostId = this.route.snapshot.paramMap.get('blogpostId');
+    const blogpostId = this.route.snapshot.paramMap.get('id');
     if (blogpostId) {
       this.blogpost = await this.blogpostService.getBlogPost(parseInt(blogpostId));
     }
@@ -37,5 +41,13 @@ export class BlogPostDetailsComponent implements OnInit {
     );
     this.blogpost!.comments!.push(createdComment);
     this.comment.reset('');
+  }
+
+  async onDeleteBlogPost() {
+    const blogpostId = this.route.snapshot.paramMap.get('id');
+    if (blogpostId) {
+      await this.blogpostService.removeBlogPost(parseInt(blogpostId));
+      this.router.navigateByUrl('/');
+    }
   }
 }

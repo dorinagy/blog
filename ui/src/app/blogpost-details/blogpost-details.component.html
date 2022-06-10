@@ -1,13 +1,16 @@
-<ng-container *ngIf="blogpost; else blogpostMissing">
-  <h1>{{ blogpost.title }} - {{ blogpost.user!.userName }}</h1>
+<ng-container class="container" *ngIf="blogpost; else blogpostMissing">
+  <h1>{{ blogpost.title }}</h1>
+  <span *ngFor="let category of blogpost.categories">{{ category.name }}</span>
   <div>
-    <p>Text: {{ blogpost.text }}</p>
+    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+    <p> {{ blogpost.text }}</p>
   </div>
   <div>
     <h2>Comments</h2>
     <ng-container *ngIf="blogpost.comments && blogpost.comments.length !== 0">
       <div class="comment" *ngFor="let comment of blogpost.comments">
-        <div class="comment-author">{{ comment.user!.userName }}</div>
+        <div class="comment-author">{{ comment.user?.userName }}</div>
+        <div class="comment-created">{{ comment.createdAt }}</div>
         <p>{{ comment.text }}</p>
       </div>
     </ng-container>
@@ -25,7 +28,15 @@
         ></textarea>
         <mat-error *ngIf="comment.invalid">This field is required.</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary">Send comment</button>
+      <div class="btn-container">
+        <button mat-raised-button color="primary">Send comment</button>
+        <button 
+          class="remove-btn" 
+          *ngIf="userService.isAdmin" 
+          mat-raised-button color="warn"
+          (click)="onDeleteBlogPost()"
+        >Delete Post</button>
+      </div>
     </form>
   </div>
 </ng-container>

@@ -13,6 +13,15 @@
       <span *ngIf="title.hasError('required')"> This field is required. </span>
     </mat-error>
   </mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-select placeholder="Categories" formControlName="categories" nmatInput name="categories" multiple>
+    <mat-option *ngFor="let category of category_options" [value]="category">
+        {{category.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
   <mat-form-field appearance="outline">
     <mat-label>Text</mat-label>
     <textarea
@@ -25,5 +34,6 @@
   </mat-form-field>
   <div class="mat-dialog-actions">
     <button mat-raised-button color="primary">Save</button>
+    <button mat-raised-button (click)="onNoClick()">Cancel</button>
   </div>
 </form>

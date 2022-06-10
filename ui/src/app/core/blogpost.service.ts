@@ -29,10 +29,19 @@ export class BlogPostService {
     return createdBlogPost;
   }
 
-  async editBlogPost(blogPostId: number, blogPost: BlogPost): Promise<BlogPost> {
+  async removeBlogPost(id: number) {
+    await (
+      this.httpClient.patch(
+        `/api/blogposts/remove/${id}`,
+        {}
+      )
+    ).toPromise();
+  }
+
+  async editBlogPost(id: number, blogPost: BlogPost): Promise<BlogPost> {
     const modifiedBlogPost = await (
       this.httpClient.patch(
-        `/api/blogposts/${blogPostId}`,
+        `/api/blogposts/${id}`,
         blogPost
       ) as Observable<BlogPost>
     ).toPromise();

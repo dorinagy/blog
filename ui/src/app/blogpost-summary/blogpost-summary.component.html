@@ -1,14 +1,5 @@
 <div>
-  <p id="title">Title: {{ blogpost.title }}</p>
-</div>
-<div>
-  <p>Text: {{ blogpost.text }}</p>
-</div>
-<div>
-  <p>Creator: {{ blogpost.user?.userName }}</p>
-</div>
-<div>
-  <p>Created At: {{ blogpost.createdAt }}</p>
+  <p>{{ blogpost.text }}</p>
 </div>
 <div *ngIf="showButtons" class="buttons">
   <a

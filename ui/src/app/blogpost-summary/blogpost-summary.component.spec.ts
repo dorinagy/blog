@@ -12,7 +12,7 @@ describe('BlogPostSummaryComponent', () => {
   let component: BlogPostSummaryComponent;
   let fixture: ComponentFixture<BlogPostSummaryComponent>;
 
- /* beforeEach(async () => {
+beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [BlogPostSummaryComponent],
@@ -29,7 +29,7 @@ describe('BlogPostSummaryComponent', () => {
       text: 'asdasdasd',
       user: {
         userName: 'Tibi',
-        role: UserRole.User,
+        role: UserRole.Admin,
       },
     };
     component.showButtons = true;
@@ -43,7 +43,7 @@ describe('BlogPostSummaryComponent', () => {
   it('should show the title of the blogpost', () => {
     const titleParagraph = fixture.debugElement.query(By.css('#title'));
     expect(titleParagraph.nativeElement.textContent).toBe(
-      'Title: Rossz projektor'
+      'teszt'
     );
   });
 
@@ -58,5 +58,5 @@ describe('BlogPostSummaryComponent', () => {
 
     const editBlogPostButton = fixture.debugElement.query(By.css('#edit-blogpost'));
     editBlogPostButton.triggerEventHandler('click', null);
-  });*/
+  });
 });

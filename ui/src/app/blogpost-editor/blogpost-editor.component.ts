@@ -8,6 +8,9 @@ import {
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BlogPost } from '../core/blogpost';
+import { Category } from '../core/category';
+import { CategoryService } from '../core/category.service';
+
 
 @Component({
   selector: 'app-blogpost-editor',
@@ -18,27 +21,41 @@ export class BlogPostEditorComponent implements OnInit {
   blogpostForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
     text: ['', Validators.required],
+    categories: ['', Validators.required]
   });
 
-  get title(): FormControl {
-    return this.blogpostForm.get('title') as FormControl;
-  }
-
-  get text(): FormControl {
-    return this.blogpostForm.get('text') as FormControl;
-  }
+  category_options?: Category[];
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<BlogPostEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) private blogpost: BlogPost
+    @Inject(MAT_DIALOG_DATA) private blogpost: BlogPost,
+    private categoriesService: CategoryService
   ) {
     if (this.blogpost) {
       this.blogpostForm.reset(this.blogpost);
     }
   }
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+    this.category_options = await this.categoriesService.getCategories();
+  }
+
+  get title(): FormControl {
+    return this.blogpostForm.get('title') as FormControl;
+  }
+
+  get categories(): FormControl {
+    return this.blogpostForm.get('categories') as FormControl;
+  }
+
+  get text(): FormControl {
+    return this.blogpostForm.get('text') as FormControl;
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
   submit() {
     if (!this.blogpostForm.valid) {

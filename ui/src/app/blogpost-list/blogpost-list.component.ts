@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BlogPost } from '../core/blogpost';
 import { BlogPostService } from '../core/blogpost.service';
 import { BlogPostEditorComponent } from '../blogpost-editor/blogpost-editor.component';
+import { UserService } from '../core/user.service';
 
 @Component({
   selector: 'app-blogpost-list',
@@ -12,7 +13,11 @@ import { BlogPostEditorComponent } from '../blogpost-editor/blogpost-editor.comp
 export class BlogPostListComponent implements OnInit {
   blogposts?: BlogPost[];
 
-  constructor(private blogpostService: BlogPostService, private dialog: MatDialog) {}
+  constructor(
+    private blogpostService: BlogPostService, 
+    private dialog: MatDialog, 
+    public userService: UserService,
+    ) {}
 
   async ngOnInit(): Promise<void> {
     this.blogposts = await this.blogpostService.getBlogPosts();
