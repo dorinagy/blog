@@ -40,13 +40,6 @@ beforeEach(async () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show the title of the blogpost', () => {
-    const titleParagraph = fixture.debugElement.query(By.css('#title'));
-    expect(titleParagraph.nativeElement.textContent).toBe(
-      'teszt'
-    );
-  });
-
   it('should emit editBlogPost when clicking on edit blogpost', (done) => {
     race(
       component.editBlogPost.pipe(map(() => true)),

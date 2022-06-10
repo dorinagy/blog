@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Category } from '../categories/entities/category';
 import { BlogPostsService } from './blogposts.service';
 import { BlogPost } from './entities/blogpost';
+import { User } from '../users/entities/user';
 
 
 describe('BlogPostsService', () => {
@@ -14,6 +15,7 @@ describe('BlogPostsService', () => {
         BlogPostsService, 
         { provide: getRepositoryToken(BlogPost), useValue: {} },
         { provide: getRepositoryToken(Category), useValue: {} },
+        { provide: getRepositoryToken(User), useValue: {} },
       ],
     }).compile();
 

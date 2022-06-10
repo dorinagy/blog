@@ -20,25 +20,25 @@ describe('BlogPostService', () => {
     expect(service).toBeTruthy();
   });
 
-  /*describe('getIssues', () => {
-    it('should create a get request to /api/issues', async () => {
-      const getIssuesPromise = service.getIssues();
+  describe('getBlogPosts', () => {
+    it('should create a get request to /api/blogposts', async () => {
+      const getBlogPostPromise = service.getBlogPosts();
 
-      httpTestingController.expectOne('/api/issues').flush([]);
+      httpTestingController.expectOne('/api/blogposts').flush([]);
 
-      await expectAsync(getIssuesPromise).toBeResolved();
+      await expectAsync(getBlogPostPromise).toBeResolved();
 
       httpTestingController.verify();
     });
 
     it('should return the result of the request', async () => {
-      const getIssuesPromise = service.getIssues();
+      const getBlogPostPromise = service.getBlogPosts();
 
-      httpTestingController.expectOne('/api/issues').flush([]);
+      httpTestingController.expectOne('/api/blogposts').flush([]);
 
-      await expectAsync(getIssuesPromise).toBeResolvedTo([]);
+      await expectAsync(getBlogPostPromise).toBeResolvedTo([]);
 
       httpTestingController.verify();
     });
-  });*/
+  });
 });
