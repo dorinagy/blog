@@ -59,7 +59,7 @@ Regisztráció:
 
 #### Végpontok
 
-
+<pre>
 GET /blogposts - összes blogpost lekérdezés   
   params:   
   returns:   
@@ -117,7 +117,7 @@ POST /blogposts/:is/comments - blogposthoz komment létrehozása
   returns:   
     200: Comment - A létrehozott komment   
     403 - A felhasználó nem férhet hozzá ehhez az blogposthoz   
-   
+</pre>
 ## Fejlesztői dokumentáció
 
 ### Fejlesztői környezet
@@ -130,50 +130,50 @@ Visueal Studio Code
 
 ### Kódszerkezet
 
-rest
-  migrations
-  dist
-  src
-    auth
-    categories
-    posts
-    users
-    app.controller.ts
-    app.module.ts
-    app.service.ts
-    main.ts
-  test
-  blog.sqlite3
-  package.json
-  mikro-orm.config.json
-  tsconfig.json
+- rest
+    - migrations
+    - dist
+    - src
+        - auth
+        - categories
+        - posts
+        -  users
+        - app.controller.ts
+        - app.module.ts
+        - app.service.ts
+        - main.ts
+    - test
+    - blog.sqlite3
+    - package.json
+    - mikro-orm.config.json
+    - tsconfig.json
   
-ui
-  proxy
-  src
-    app
-      blogpost-details
-      blogpost-editor
-      blogpost-list
-      blogpost-summary
-      core
-      landing
-      register
-      app-routing.module.ts
-      app.component.html
-      app.component.scss
-      app.component.ts
-      app.module.ts
-    assets
-    environments
-    index.html
-    main.ts
-    style.scss
-    test.ts
-  package.json
-  server.ts
-  karma.conf.json
-  tsconfig.json
+- ui
+    - proxy
+    - src
+      - app
+        - blogpost-details
+        - blogpost-editor
+        - blogpost-list
+        - blogpost-summary
+        - core
+        - landing
+        - register
+        - app-routing.module.ts
+        - app.component.html
+        - app.component.scss
+        - app.component.ts
+        - app.module.ts
+      - assets
+      - environments
+      - index.html
+      - main.ts
+      - style.scss
+      - test.ts
+    - package.json
+    - server.ts
+    - karma.conf.json
+    - tsconfig.json
 
 ## Tesztelés
 
