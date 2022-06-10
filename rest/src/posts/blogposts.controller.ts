@@ -8,7 +8,8 @@ import {
     HttpStatus, 
     ParseIntPipe, 
     Query, 
-    Patch
+    Patch,
+    Delete
 } from '@nestjs/common';
 import { AllowAnonymous } from '../auth/allow-anonymous';
 import { Roles } from '../auth/roles';
@@ -55,7 +56,7 @@ export class BlogPostsController {
         return new BlogPostDto(newPost);
     }
 
-    @Post('remove/:id')
+    @Delete(':id')
     @Roles(UserRole.Admin)
     async remove(
         @Param('id', ParseIntPipe) id: number,
@@ -74,6 +75,7 @@ export class BlogPostsController {
     }
 
     @Post(':id/comments')
+    @Roles(UserRole.User, UserRole.Admin)
     async addComment(
         @Param('id', ParseIntPipe) id: number,
         @Body() commentDto: CommentDto,

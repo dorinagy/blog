@@ -31,8 +31,8 @@ export class BlogPostService {
 
   async removeBlogPost(id: number) {
     await (
-      this.httpClient.patch(
-        `/api/blogposts/remove/${id}`,
+      this.httpClient.delete(
+        `/api/blogposts/${id}`,
         {}
       )
     ).toPromise();
