@@ -198,4 +198,4 @@ Tesztesetek:
 Futtatáshoz ajánlott szoftver:
 Google Chrome legfrissebb verziója
 
-Az alkalmazás betöltésekor a főoldal megjelenik. Itt lehetőség van megnézni vendégként a blog posztokat, vagy lehetőség van regisztrálni, vagy már regisztrált felhasználóként bejelentkezni. A bejelentkezést követően lehetőség van kommentelni egy adott poszt alá.
+Az alkalmazás betöltésekor a főoldal megjelenik. Itt lehetőség van regisztrálni, vagy már regisztrált felhasználóként bejelentkezni. A bejelentkezést követően lehetőség van megnézni a posztokat, illetve kommentelni egy adott poszt alá.
