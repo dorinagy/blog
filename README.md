@@ -57,9 +57,71 @@ Regisztráció:
 
 ### Architektúra
 
+#### Végpontok
+
+<pre>
+GET /blogposts - összes blogpost lekérdezés   
+  params:   
+  returns:   
+    200: BlogPost[] - A felhasználó által elérhető postok   
+   
+GET /blogposts/:blogpostId - egy konkrét blogpost lekérdezése   
+  params:   
+    blogpostId: number - Ezt a konkrét blogpostot akarom lekérdezni   
+  return:   
+    200: BlogPost - A kért blogpost   
+    404 - Nem létezik ez a blogpost   
+   
+POST /blogposts - egy új blogpost létrehozása   
+  params:   
+    Blogpost - A létrehozandó blogpost adatai   
+  returns:   
+    200: Blogpost - A létrehozott blogpost   
+   
+PATCH /blogposts/:id - blogpost módosítása a megadott adatokkal   
+  params:   
+    id: number - A módosítandó blogpost Id-ja   
+    BlogPost - A módosítandó mezők és értékeik   
+  returns:   
+    200: BlogPost - A módosított blogpost   
+    404 - Nem létezik a módosítandó blogpost   
+    403 - Ezt az blogpost nem módosíthatja az aktuális felhasználó   
+   
+PUT /blogposts/:blogpostId - blogpost lecserélése   
+  params:   
+    id: number - A módosítandó blogpost Id-ja   
+    Blogpost - A cél blogpost   
+  returns:   
+    200: Blogpost - A módosított blogpost   
+    404 - Nem létezik a módosítandó blogpost   
+    403 - Ezt az blogpost nem módosíthatja az aktuális felhasználó   
+   
+DELETE /blogposts/:blogpostId - blogpost törlése   
+  params:   
+    id: number - A törlendő blogpost Id-ja   
+  returns:   
+    200 - Sikerült törölni az blogpostot   
+    404 - Nem létezik a törlendő blogpost   
+    403 - Nincs jog az adott blogpost törléséhez   
+       
+GET /blogposts/:id/comments - blogposthoz tartozó kommentek lekérdezése   
+  params:   
+    id: number - A lekérdezendő üzenetek blogpostja   
+  returns:   
+    200: Comment[] - Az blogposthoz tartozó kommentek   
+    403 - A felhasználó nem férhet hozzá ehhez az blogposthoz   
+   
+POST /blogposts/:is/comments - blogposthoz komment létrehozása   
+  params:   
+    id: number - Az blogpost id-ja, amihez az kommentet létre akarom hozni   
+  returns:   
+    200: Comment - A létrehozott komment   
+    403 - A felhasználó nem férhet hozzá ehhez az blogposthoz   
+</pre>
 ## Fejlesztői dokumentáció
 
 ### Fejlesztői környezet
+Visueal Studio Code
 
 ### Használt technológiák
 
@@ -68,9 +130,72 @@ Regisztráció:
 
 ### Kódszerkezet
 
+- rest
+    - migrations
+    - dist
+    - src
+        - auth
+        - categories
+        - posts
+        -  users
+        - app.controller.ts
+        - app.module.ts
+        - app.service.ts
+        - main.ts
+    - test
+    - blog.sqlite3
+    - package.json
+    - mikro-orm.config.json
+    - tsconfig.json
+  
+- ui
+    - proxy
+    - src
+      - app
+        - blogpost-details
+        - blogpost-editor
+        - blogpost-list
+        - blogpost-summary
+        - core
+        - landing
+        - register
+        - app-routing.module.ts
+        - app.component.html
+        - app.component.scss
+        - app.component.ts
+        - app.module.ts
+      - assets
+      - environments
+      - index.html
+      - main.ts
+      - style.scss
+      - test.ts
+    - package.json
+    - server.ts
+    - karma.conf.json
+    - tsconfig.json
+
 ## Tesztelés
 
+Teszteléshez backenden a @nestjs/testing modul, frontenden a karma teszt keretrendszert használtam.
+
+Egységtesztek:
+ - főolal megnyitása
+ - bejelentkezés
+ - regisztráció
+
+Tesztesetek:
+ - Vendég módban a jogosulatlan végpontok nem elérhetőek, azok a '/login' végpontra navigálnak
+ - Bejelentkezést követően csak az a menüpont jelenik meg, amilyen szerepköre a felhasználónak van.
+ - Blog Post lista megjelenik user szerepkörű felhasználónak, de módosítani nem tud a tartalmán.
+ - Blog Post lista megjelenik az admin szerepkörű felhasználónak, módosítani tud a tartalmán, valamint új postot is fel tud venni.
+ - Regisztráció működik, alapértelmezett szerepkör a user.
 
 ## Felhasználói dokumentáció
 
 ### Program használata
+
+Futtatáshoz ajánlott szoftver:
+Google Chrome legfrissebb verziója
+
+Az alkalmazás betöltésekor a főoldal megjelenik. Itt lehetőség van regisztrálni, vagy már regisztrált felhasználóként bejelentkezni. A bejelentkezést követően lehetőség van megnézni a posztokat, illetve kommentelni egy adott poszt alá.
