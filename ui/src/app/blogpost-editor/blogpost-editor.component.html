@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Create blogpost</h1>
 
-<form mat-dialog-content [formGroup]="blogpostForm" (ngSubmit)="submit()">
+<form mat-dialog-content [formGroup]="blogpostForm" >
   <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
     <input
@@ -15,7 +15,13 @@
   </mat-form-field>
 
 <mat-form-field appearance="outline">
-  <mat-select placeholder="Categories" formControlName="categories" nmatInput name="categories" multiple>
+  <mat-select 
+    placeholder="Categories" 
+    [formControl]="categories" 
+    matInput 
+    multiple 
+    [(ngModel)]="blogpost_categories"
+    name="categories">
     <mat-option *ngFor="let category of category_options" [value]="category">
         {{category.name}}
     </mat-option>
@@ -33,7 +39,7 @@
     <mat-error *ngIf="text.invalid">This field is required.</mat-error>
   </mat-form-field>
   <div class="mat-dialog-actions">
-    <button mat-raised-button color="primary">Save</button>
+    <button mat-raised-button (click)="onSave()" color="primary">Save</button>
     <button mat-raised-button (click)="onNoClick()">Cancel</button>
   </div>
 </form>

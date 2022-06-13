@@ -58,10 +58,10 @@ export class BlogPostsController {
 
     @Delete(':id')
     @Roles(UserRole.Admin)
-    async remove(
+    async deletePost(
         @Param('id', ParseIntPipe) id: number,
     ) {
-        await this._postsService.remove(id);
+        await this._postsService.deletePost(id);
     }
 
     @Patch(':id')
@@ -83,9 +83,18 @@ export class BlogPostsController {
     ): Promise<BlogPostDto> {
         const comment = await this._postsService.addComment(id, commentDto, userDto);
         
-        if (!comment) throw new HttpException('BlogPost not found', HttpStatus.NOT_FOUND);
+        if (!comment) throw new HttpException('Comment not found', HttpStatus.NOT_FOUND);
 
         return new CommentDto(comment);
+    }
+
+    @Delete(':id/comments/:commentId')
+    @Roles(UserRole.Admin)
+    async deleteComment(
+        @Param('id', ParseIntPipe) id: number,
+        @Param('commentId', ParseIntPipe) commentId: number,
+    ) {
+        await this._postsService.deleteComment(id, commentId);
     }
     
 }

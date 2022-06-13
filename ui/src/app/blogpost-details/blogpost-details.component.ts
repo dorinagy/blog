@@ -43,11 +43,20 @@ export class BlogPostDetailsComponent implements OnInit {
     this.comment.reset('');
   }
 
+  async deleteComment(commentId: any) {
+    if (!commentId) return;
+    const blogpostId = this.route.snapshot.paramMap.get('id');
+    if (blogpostId) {
+      await this.blogpostService.deleteComment(parseInt(blogpostId), commentId);
+      this.blogpost = await this.blogpostService.getBlogPost(parseInt(blogpostId));
+    }
+  }
+
   async onDeleteBlogPost() {
     const blogpostId = this.route.snapshot.paramMap.get('id');
     if (blogpostId) {
       await this.blogpostService.removeBlogPost(parseInt(blogpostId));
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/blogposts');
     }
   }
 }

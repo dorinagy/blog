@@ -1,6 +1,6 @@
 <ng-container class="container" *ngIf="blogpost; else blogpostMissing">
   <h1>{{ blogpost.title }}</h1>
-  <span *ngFor="let category of blogpost.categories">{{ category.name }}</span>
+  <span class="categories" *ngFor="let category of blogpost.categories">{{ category.name }}</span>
   <div>
     <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
     <p> {{ blogpost.text }}</p>
@@ -9,9 +9,16 @@
     <h2>Comments</h2>
     <ng-container *ngIf="blogpost.comments && blogpost.comments.length !== 0">
       <div class="comment" *ngFor="let comment of blogpost.comments">
-        <div class="comment-author">{{ comment.user?.userName }}</div>
-        <div class="comment-created">{{ comment.createdAt }}</div>
-        <p>{{ comment.text }}</p>
+        <div class="header-container">
+          <span class="comment-author">{{ comment.user!.userName }}</span>
+          <span class="comment-created">{{ comment.createdAt }}</span>
+        </div>
+        <div class="comment-body">
+          <span class="comment-text">{{ comment.text }}</span>
+          <button *ngIf="userService.isAdmin" class="remove-btn" mat-icon-button color="warn" (click)="deleteComment(comment?.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </div>
     </ng-container>
     <p *ngIf="!blogpost.comments || blogpost.comments.length === 0">

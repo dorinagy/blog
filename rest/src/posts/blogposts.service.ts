@@ -17,6 +17,8 @@ export class BlogPostsService {
         private blogPostRepository: EntityRepository<BlogPost>,
         @InjectRepository(Category)
         private categoryRepository: EntityRepository<Category>,
+        @InjectRepository(Comment)
+        private commentRepository: EntityRepository<Comment>,
         @InjectRepository(User)
         private userRepository: EntityRepository<User>,
     ) {}
@@ -73,16 +75,17 @@ export class BlogPostsService {
       return post;
     }
     
-    async remove(id: number) {
+    async deletePost(id: number) {
       const post = await this.blogPostRepository.findOne({ id });
-
-      this.blogPostRepository.remove(post);
+      await this.blogPostRepository.remove(post);
+      await this.blogPostRepository.flush();
     }
 
-    async removeComment(id: number, commentDto: CommentDto) {
+    async deleteComment(id: number, commentId: number) {
       const post = await this.findOne(id);
-
-      //post.comments.map(c => c.id === commentDto.id)
+      const comment = await this.commentRepository.findOne({ id: commentId })
+      post.comments.remove(comment)
+      await this.blogPostRepository.flush();
     }
 
     async addComment(id: number, commentDto: CommentDto, userDto: UserDto) {
@@ -97,7 +100,8 @@ export class BlogPostsService {
 
       post.comments.add(comment);
   
-      await this.blogPostRepository.flush();
+      await this.blogPostRepository.persistAndFlush(post);
+      await this.blogPostRepository.populate(post, ['categories', 'user']);
   
       return comment;
     }

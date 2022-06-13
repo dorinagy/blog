@@ -38,6 +38,15 @@ export class BlogPostService {
     ).toPromise();
   }
 
+  async deleteComment(id: number, commentId: number) {
+    await (
+      this.httpClient.delete(
+        `/api/blogposts/${id}/comments/${commentId}`,
+        {}
+      )
+    ).toPromise();
+  }
+
   async editBlogPost(id: number, blogPost: BlogPost): Promise<BlogPost> {
     const modifiedBlogPost = await (
       this.httpClient.patch(

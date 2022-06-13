@@ -25,11 +25,12 @@ export class BlogPostEditorComponent implements OnInit {
   });
 
   category_options?: Category[];
+  blogpost_categories?: Category[];
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<BlogPostEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) private blogpost: BlogPost,
+    @Inject(MAT_DIALOG_DATA) public blogpost: BlogPost,
     private categoriesService: CategoryService
   ) {
     if (this.blogpost) {
@@ -39,6 +40,9 @@ export class BlogPostEditorComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.category_options = await this.categoriesService.getCategories();
+    if (this.blogpost && this.blogpost.categories) {
+      this.blogpost_categories = this.category_options.filter(o => this.blogpost?.categories?.map(c => c.id).includes(o.id));
+    }
   }
 
   get title(): FormControl {
@@ -57,7 +61,7 @@ export class BlogPostEditorComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  submit() {
+  onSave() {
     if (!this.blogpostForm.valid) {
       return;
     }
